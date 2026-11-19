@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alojamiento — Boda de Lorena y Diego</title>
+<meta name="description" content="Dónde alojarse en Conil para la boda de Lorena y Diego: hoteles recomendados y códigos de descuento para invitados.">
+<!-- Propuesta de diseño temporal (variante 3 · Guía de viaje): no indexar -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#4A433A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,800&family=Karla:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+/* Paleta de la boda (facilitada por los novios) y derivados con contraste suficiente */
+:root {
+  color-scheme: light;
+  --salvia: #A8B8AE;
+  --arena: #D8C5A7;
+  --crema: #F4F0E5;
+  --topo: #61594E;
+  --topo-oscuro: #4A433A;
+  --salvia-oscuro: #4E5E54;
+  --papel: #FBF9F4;
+  --display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --sans: 'Karla', system-ui, -apple-system, sans-serif;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--papel); color: var(--topo-oscuro);
+  font-family: var(--sans); font-size: 16px; line-height: 1.55;
+  font-variant-numeric: lining-nums; -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--arena); color: var(--topo-oscuro); }
+img { display: block; max-width: 100%; }
+a { color: var(--topo-oscuro); text-decoration-color: var(--salvia-oscuro); text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--salvia-oscuro); outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.stars {
+  display: inline-block; height: 12px; width: calc(var(--n, 5) * 15px - 3px); background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 12'%3E%3Cpath d='M6 .4L7.47 4.38 11.71 4.55 8.38 7.17 9.53 11.25 6 8.9 2.47 11.25 3.62 7.17.29 4.55 4.53 4.38Z'/%3E%3C/svg%3E") 0 0 / 15px 12px repeat-x;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 12'%3E%3Cpath d='M6 .4L7.47 4.38 11.71 4.55 8.38 7.17 9.53 11.25 6 8.9 2.47 11.25 3.62 7.17.29 4.55 4.53 4.38Z'/%3E%3C/svg%3E") 0 0 / 15px 12px repeat-x;
+}
+
+/* ---------- Portada de revista ---------- */
+/* Fondo oscuro por si la foto no carga: el texto claro sigue leyéndose */
+.cover { position: relative; min-height: min(100svh, 860px); display: grid; align-content: end; color: var(--papel); background: var(--topo-oscuro); overflow: hidden; }
+.cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 28% 50%; }
+.cover::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(74,67,58,.65), rgba(74,67,58,0) 22%, rgba(74,67,58,.1) 55%, rgba(74,67,58,.82)); }
+.cover__mast { position: absolute; z-index: 2; top: 18px; left: 0; right: 0; max-width: 1180px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; font: 500 16px var(--display); }
+.cover__title { position: relative; z-index: 2; width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px 32px; }
+.cover h1 { font: 800 clamp(72px, 19vw, 176px)/.84 var(--display); letter-spacing: -.04em; margin: 0; }
+.cover p { margin: 16px 0 0; font-size: 17px; max-width: 32ch; line-height: 1.45; }
+
+/* ---------- Índice ---------- */
+.index { background: var(--salvia); padding: 28px 20px 30px; }
+.index__inner { max-width: 1180px; margin: 0 auto; }
+.index h2 { font: 500 26px/1.1 var(--display); letter-spacing: -.01em; margin: 0; }
+.index ol { list-style: none; margin: 12px 0 0; padding: 0; }
+.index a { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(74,67,58,.25); font-size: 16px; font-weight: 600; text-decoration: none; }
+.index a:hover span:first-child { text-decoration: underline; text-decoration-color: var(--topo-oscuro); }
+.index a span:last-child { font-weight: 800; font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
+
+/* ---------- Entradas de la guía ---------- */
+.entries { list-style: none; margin: 0; padding: 0; }
+.entry { padding: 36px 0 44px; scroll-margin-top: 8px; }
+.entry__media { position: relative; }
+.entry__media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+/* La cifra grande es el dato que decide (el descuento), no un número de sección */
+.entry__over { position: absolute; left: 16px; bottom: -.36em; font: 300 clamp(96px, 26vw, 150px)/1 var(--display); color: var(--topo-oscuro); letter-spacing: -.04em; }
+.entry__over--word { font-size: clamp(60px, 17vw, 96px); font-weight: 500; letter-spacing: -.03em; bottom: -.4em; }
+.entry--alt .entry__over { left: auto; right: 16px; }
+.entry__body { padding: 52px 20px 0; max-width: 560px; }
+.entry__name { font: 500 clamp(30px, 8vw, 44px)/1 var(--display); letter-spacing: -.02em; margin: 0; }
+.entry__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 12px 0 0; font-size: 15px; font-weight: 700; color: var(--salvia-oscuro); }
+.entry__facts { list-style: none; margin: 14px 0 0; padding: 0; font-size: 16px; }
+.entry__facts li + li { margin-top: 6px; }
+.entry__code { display: flex; align-items: stretch; margin-top: 18px; border: 1.5px solid var(--topo-oscuro); }
+.entry__code > span { flex: 1; padding: 12px 14px; font: 700 16px 'Spline Sans Mono', ui-monospace, monospace; }
+.entry__code button { border: 0; background: var(--topo-oscuro); color: var(--papel); padding: 0 18px; min-height: 46px; font-weight: 700; font-size: 15px; }
+.entry__code button:hover { background: var(--topo); }
+.entry__code button.is-copied { background: var(--salvia-oscuro); }
+.entry__link { display: inline-block; margin-top: 16px; font-weight: 700; font-size: 15px; }
+
+/* ---------- Pie ---------- */
+.footer { background: var(--topo-oscuro); color: var(--crema); padding: 48px 20px 64px; }
+.footer__inner { max-width: 1180px; margin: 0 auto; }
+.footer__initials { font: 800 44px/1 var(--display); letter-spacing: -.03em; }
+.footer p { margin: 10px 0 0; font-size: 16px; }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 16px);
+  width: max-content; max-width: calc(100vw - 32px); text-align: center; background: var(--topo-oscuro); color: var(--crema);
+  padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none;
+  transition: opacity .25s var(--ease-out), transform .35s var(--ease-out);
+}
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+@media (min-width: 900px) {
+  .cover__title { padding-bottom: 56px; }
+  .index { padding: 40px 20px 44px; }
+  .index ol { columns: 2; column-gap: 56px; }
+  .index li { break-inside: avoid; }
+  /* Foto y texto lado a lado, alternando el lado en cada hotel */
+  .entry { max-width: 1180px; margin: 0 auto; padding: 72px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .entry--alt .entry__media { order: 2; }
+  .entry__body { padding: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .toast { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <img src="/images/hoteles/costa-conil.jpg" alt="Atardecer sobre la playa de Conil desde el acantilado">
+  <div class="cover__mast"><span>Guía para invitados</span><span>L &amp; D</span></div>
+  <div class="cover__title">
+    <h1>Dormir en Conil</h1>
+    <p>Cinco hoteles cerca de la boda de Lorena y Diego. Varios tienen descuento para vosotros: copiad el código y usadlo al reservar.</p>
+  </div>
+</header>
+
+<nav class="index" aria-labelledby="index-title">
+  <div class="index__inner">
+    <h2 id="index-title">En esta guía</h2>
+    <ol>
+      <li><a href="#hotel-1"><span>DAIA Slow Beach Hotel Conil</span><span>Favorito</span></a></li>
+      <li><a href="#hotel-2"><span>Hipotels Gran Conil</span><span>−15 %</span></a></li>
+      <li><a href="#hotel-3"><span>Hotel Leonor</span><span>−10 %</span></a></li>
+      <li><a href="#hotel-4"><span>FERGUS Conil Park</span><span>−10 %</span></a></li>
+      <li><a href="#hotel-5"><span>Hotel Flamenco Conil</span><span>−15 %</span></a></li>
+    </ol>
+  </div>
+</nav>
+
+<main>
+  <ol class="entries">
+
+    <li class="entry" id="hotel-1">
+      <div class="entry__media"><img src="/images/hoteles/daia.jpg" alt="Piscina y palmeras del DAIA Slow Beach Hotel Conil" loading="lazy"><span class="entry__over entry__over--word" aria-hidden="true">Favorito</span></div>
+      <div class="entry__body">
+        <h2 class="entry__name">DAIA Slow Beach Hotel Conil</h2>
+        <p class="entry__meta"><span class="stars" style="--n:5" role="img" aria-label="5 estrellas"></span><span>Recomendado por los novios</span></p>
+        <ul class="entry__facts">
+          <li>Una de las mejores opciones de alojamiento recomendadas por los novios.</li>
+          <li>Sin descuento para invitados.</li>
+        </ul>
+        <a class="entry__link" href="https://www.daiahotels.com/daia-conil/" target="_blank" rel="noopener">Ver web del hotel</a>
+      </div>
+    </li>
+
+    <li class="entry entry--alt" id="hotel-2">
+      <div class="entry__media"><img src="/images/hoteles/gran-conil.jpg" alt="Hipotels Gran Conil junto a la playa" loading="lazy"><span class="entry__over">15%<span class="sr"> de descuento</span></span></div>
+      <div class="entry__body">
+        <h2 class="entry__name">Hipotels Gran Conil</h2>
+        <p class="entry__meta"><span class="stars" style="--n:4" role="img" aria-label="4 estrellas"></span><span>Reserva en la web de Hipotels</span></p>
+        <div class="entry__code"><span>BCDH27</span><button type="button" class="js-copy" data-code="BCDH27" aria-label="Copiar código BCDH27"><span class="js-copy-label">Copiar</span></button></div>
+        <ul class="entry__facts">
+          <li>Válido del 15 al 21 de septiembre de 2027.</li>
+          <li>Reserva directamente en la web oficial de Hipotels.</li>
+        </ul>
+        <a class="entry__link" href="https://www.hipotels.com/hoteles/granconil/" target="_blank" rel="noopener">Ver web del hotel</a>
+      </div>
+    </li>
+
+    <li class="entry" id="hotel-3">
+      <div class="entry__media"><img src="/images/hoteles/leonor.jpg" alt="Habitación doble del Hotel Leonor" loading="lazy"><span class="entry__over">10%<span class="sr"> de descuento</span></span></div>
+      <div class="entry__body">
+        <h2 class="entry__name">Hotel Leonor</h2>
+        <p class="entry__meta"><span class="stars" style="--n:2" role="img" aria-label="2 estrellas"></span><span>Reserva por teléfono o correo</span></p>
+        <div class="entry__code"><span>BODALYD10</span><button type="button" class="js-copy" data-code="BODALYD10" aria-label="Copiar código BODALYD10"><span class="js-copy-label">Copiar</span></button></div>
+        <ul class="entry__facts">
+          <li>Reservas por teléfono o correo electrónico.</li>
+          <li>Estancia mínima: 2 noches.</li>
+          <li>Política de cancelación: hasta 7 días antes de la llegada.</li>
+        </ul>
+        <a class="entry__link" href="https://leonorhotelconil.es/" target="_blank" rel="noopener">Ver web del hotel</a>
+      </div>
+    </li>
+
+    <li class="entry entry--alt" id="hotel-4">
+      <div class="entry__media"><img src="/images/hoteles/fergus.jpg" alt="Cama balinesa al atardecer en el FERGUS Conil Park" loading="lazy"><span class="entry__over">10%<span class="sr"> de descuento</span></span></div>
+      <div class="entry__body">
+        <h2 class="entry__name">FERGUS Conil Park</h2>
+        <p class="entry__meta"><span class="stars" style="--n:4" role="img" aria-label="4 estrellas"></span><span>Reserva en la web oficial</span></p>
+        <div class="entry__code"><span>LORENAYDIEGO</span><button type="button" class="js-copy" data-code="LORENAYDIEGO" aria-label="Copiar código LORENAYDIEGO"><span class="js-copy-label">Copiar</span></button></div>
+        <ul class="entry__facts">
+          <li>El descuento se aplica sobre todas las tarifas.</li>
+          <li>El 10 % es fijo, aunque las tarifas del hotel cambien.</li>
+          <li>Introduce el código en el apartado correspondiente al reservar.</li>
+        </ul>
+        <a class="entry__link" href="https://www.fergushotels.com/fergus-conil-park" target="_blank" rel="noopener">Ver web del hotel</a>
+      </div>
+    </li>
+
+    <li class="entry" id="hotel-5">
+      <div class="entry__media"><img src="/images/hoteles/flamenco.jpg" alt="Vista aérea del Hotel Flamenco Conil" loading="lazy"><span class="entry__over">15%<span class="sr"> de descuento</span></span></div>
+      <div class="entry__body">
+        <h2 class="entry__name">Hotel Flamenco Conil</h2>
+        <p class="entry__meta"><span class="stars" style="--n:4" role="img" aria-label="4 estrellas"></span><span>Reserva en la web de Hipotels</span></p>
+        <div class="entry__code"><span>BCDH27</span><button type="button" class="js-copy" data-code="BCDH27" aria-label="Copiar código BCDH27"><span class="js-copy-label">Copiar</span></button></div>
+        <ul class="entry__facts">
+          <li>Válido del 15 al 21 de septiembre de 2027.</li>
+          <li>Reserva directamente en la web oficial de Hipotels.</li>
+        </ul>
+        <a class="entry__link" href="https://www.hipotels.com/" target="_blank" rel="noopener">Ver web del hotel</a>
+      </div>
+    </li>
+
+  </ol>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__initials">L &amp; D</div>
+    <p>Si tenéis cualquier duda con el alojamiento, escribidnos.</p>
+  </div>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Copiado de códigos promocionales (mismo comportamiento que la página principal).
+const toast = document.getElementById('toast');
+let toastTimer = null;
+
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+}
+
+// Alternativa para navegadores sin acceso al portapapeles moderno.
+function copyWithSelection(text) {
+  const area = document.createElement('textarea');
+  area.value = text;
+  area.setAttribute('readonly', '');
+  area.style.position = 'fixed';
+  area.style.opacity = '0';
+  document.body.appendChild(area);
+  area.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+  document.body.removeChild(area);
+  return ok;
+}
+
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try { await navigator.clipboard.writeText(text); return true; } catch (err) { /* probamos la alternativa */ }
+  }
+  return copyWithSelection(text);
+}
+
+document.querySelectorAll('.js-copy').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const code = button.dataset.code;
+    const label = button.querySelector('.js-copy-label');
+    if (await copyText(code)) {
+      button.classList.add('is-copied');
+      if (label) label.textContent = 'Copiado';
+      showToast(`Código ${code} copiado`);
+      setTimeout(() => {
+        button.classList.remove('is-copied');
+        if (label) label.textContent = 'Copiar';
+      }, 2200);
+    } else {
+      showToast('No se pudo copiar: mantén pulsado el código para copiarlo');
+    }
+  });
+});
+</script>
+</body>
+</html>

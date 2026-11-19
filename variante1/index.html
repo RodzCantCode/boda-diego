@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alojamiento — Boda de Lorena y Diego</title>
+<meta name="description" content="Dónde alojarse en Conil para la boda de Lorena y Diego: hoteles recomendados y códigos de descuento para invitados.">
+<!-- Propuesta de diseño temporal (variante 1 · Postales): no indexar -->
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F4F0E5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Homemade+Apple&family=Karla:wght@400;500;600;700&family=Spline+Sans+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+/* Paleta de la boda (facilitada por los novios) y derivados con contraste suficiente */
+:root {
+  color-scheme: light;
+  --salvia: #A8B8AE;
+  --arena: #D8C5A7;
+  --crema: #F4F0E5;
+  --topo: #61594E;
+  --topo-oscuro: #4A433A;
+  --salvia-oscuro: #4E5E54;
+  --papel: #FBF9F4;
+  --sans: 'Karla', system-ui, -apple-system, sans-serif;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--crema); color: var(--topo-oscuro);
+  font-family: var(--sans); font-size: 16px; line-height: 1.55;
+  font-variant-numeric: lining-nums; -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--arena); color: var(--topo-oscuro); }
+img { display: block; max-width: 100%; }
+a { color: var(--topo-oscuro); text-decoration-color: var(--salvia-oscuro); text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--salvia-oscuro); outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Estrellas dibujadas (una forma propia repetida), no el carácter de teclado */
+.stars {
+  display: inline-block; height: 12px; width: calc(var(--n, 5) * 15px - 3px); color: var(--salvia-oscuro); background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 12'%3E%3Cpath d='M6 .4L7.47 4.38 11.71 4.55 8.38 7.17 9.53 11.25 6 8.9 2.47 11.25 3.62 7.17.29 4.55 4.53 4.38Z'/%3E%3C/svg%3E") 0 0 / 15px 12px repeat-x;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 12'%3E%3Cpath d='M6 .4L7.47 4.38 11.71 4.55 8.38 7.17 9.53 11.25 6 8.9 2.47 11.25 3.62 7.17.29 4.55 4.53 4.38Z'/%3E%3C/svg%3E") 0 0 / 15px 12px repeat-x;
+}
+
+/* ---------- Portada: el anverso de la postal ---------- */
+/* Fondo oscuro por si la foto no carga: el texto claro sigue leyéndose */
+.hero { position: relative; height: min(78svh, 640px); min-height: 440px; background: var(--topo-oscuro); color: var(--papel); overflow: hidden; }
+.hero img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(74,67,58,.1) 30%, rgba(74,67,58,.78)); }
+.hero__text { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; max-width: 1080px; margin: 0 auto; padding: 0 20px 28px; }
+.hero h1 { margin: 0; font-weight: 400; }
+.hero__script { display: block; font: 400 clamp(18px, 4.6vw, 30px)/1 'Homemade Apple', cursive; transform: rotate(-5deg); transform-origin: left bottom; margin: 0 0 -2px 6px; }
+.hero__place { display: block; font: 400 clamp(80px, 24vw, 200px)/.88 'Gloock', Georgia, serif; letter-spacing: -.015em; }
+.hero__sub { margin: 14px 0 0; font-size: 16px; font-weight: 600; }
+
+/* ---------- Carta de bienvenida ---------- */
+.letter { max-width: 560px; margin: 0 auto; padding: 36px 20px 8px; font-size: 16px; }
+.letter__hello { display: block; font: 400 17px/1.6 'Homemade Apple', cursive; color: var(--salvia-oscuro); margin-bottom: 10px; }
+.letter p { margin: 0; }
+
+/* ---------- Postales ---------- */
+.postales { list-style: none; margin: 0 auto; padding: 16px 14px 24px; max-width: 760px; }
+.postal {
+  margin-top: 30px; background: var(--papel);
+  box-shadow: 0 1px 0 var(--arena), 0 22px 34px -24px rgba(74,67,58,.6);
+  transform: rotate(-1deg);
+}
+.postal:nth-child(even) { transform: rotate(1.1deg); }
+.postal__photo { padding: 10px 10px 0; }
+.postal__photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.postal__back { display: grid; grid-template-columns: 1fr 1px 112px; gap: 12px; padding: 16px 14px 18px; }
+.postal__rule { background: var(--arena); }
+.postal__name { font: 400 24px/1.1 'Gloock', Georgia, serif; margin: 0 0 8px; }
+.postal__hand { font: 400 15px/1.7 'Homemade Apple', cursive; margin: 10px 0 0; color: var(--salvia-oscuro); }
+.postal__facts { list-style: none; margin: 10px 0 0; padding: 0; font-size: 14.5px; line-height: 1.5; }
+.postal__facts li + li { margin-top: 6px; }
+.postal__link { display: inline-block; margin-top: 14px; font-size: 15px; font-weight: 700; }
+.postal__side { display: grid; align-content: start; justify-items: end; gap: 10px; }
+
+.stamp {
+  width: 96px; height: 108px; padding: 5px;
+  background: radial-gradient(circle at center, transparent 3px, var(--papel) 3.4px) -4px -4px / 8px 8px, var(--papel);
+  filter: drop-shadow(0 1px 1px rgba(74,67,58,.35));
+}
+.stamp__in {
+  height: 100%; padding: 8px 4px; background: var(--arena); display: grid; place-content: center; justify-items: center; text-align: center;
+  outline: 1px solid var(--papel); outline-offset: -5px; color: var(--topo-oscuro);
+}
+.stamp--salvia .stamp__in { background: var(--salvia); }
+.stamp__num { font: 400 34px/1 'Gloock', Georgia, serif; }
+.stamp__heart { width: 30px; height: 30px; fill: currentColor; }
+.stamp__txt { font-size: 11px; font-weight: 700; margin-top: 6px; }
+
+/* Matasellos: es el botón que copia el código */
+.postmark { position: relative; display: grid; place-items: center; width: 112px; height: 112px; border: 0; background: none; padding: 0; color: var(--topo-oscuro); border-radius: 50%; }
+.postmark svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.postmark__code { position: relative; display: grid; justify-items: center; gap: 2px; margin-top: 10px; }
+.postmark__code b { font: 700 11px 'Spline Sans Mono', ui-monospace, monospace; }
+.postmark__code span { font-size: 12px; font-weight: 700; text-decoration: underline; text-decoration-color: var(--salvia-oscuro); text-underline-offset: 3px; }
+.postmark:hover svg { color: var(--salvia-oscuro); }
+.postmark.is-copied .postmark__code span { color: var(--salvia-oscuro); text-decoration: none; }
+
+/* ---------- Pie ---------- */
+.footer { text-align: center; padding: 48px 20px 64px; }
+.footer__initials { font: 400 34px 'Gloock', Georgia, serif; }
+.footer p { margin: 8px 0 0; font-size: 15px; }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 16px);
+  width: max-content; max-width: calc(100vw - 32px); text-align: center; background: var(--topo-oscuro); color: var(--crema);
+  padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none;
+  transition: opacity .25s var(--ease-out), transform .35s var(--ease-out);
+}
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+@media (min-width: 760px) {
+  .hero__text { padding-bottom: 44px; }
+  .postales { padding-top: 32px; }
+  /* En pantalla grande las postales quedan como esparcidas sobre la mesa */
+  .postal { width: 86%; margin-top: 44px; }
+  .postal:nth-child(even) { margin-left: auto; }
+  .postal__back { grid-template-columns: 1fr 1px 128px; padding: 20px 22px 22px; gap: 18px; }
+  .postal__name { font-size: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2.5 5 6.5 5c2.2 0 3.6 1.2 5.5 3.2C13.9 6.2 15.3 5 17.5 5c4 0 6 4 4 7.5C19 16.65 12 21 12 21z"/></symbol>
+  <symbol id="i-postmark" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="2"/>
+    <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width=".8"/>
+    <path id="postmark-arc" d="M 17 50 A 33 33 0 0 1 83 50" fill="none"/>
+    <text font-family="Karla, sans-serif" font-size="9" font-weight="700" letter-spacing="2" fill="currentColor"><textPath href="#postmark-arc" startOffset="50%" text-anchor="middle">CONIL · 2027</textPath></text>
+  </symbol>
+</svg>
+
+<header class="hero">
+  <img src="/images/hoteles/costa-conil.jpg" alt="Atardecer sobre la playa de Conil desde el acantilado">
+  <div class="hero__text">
+    <h1><span class="hero__script">Saludos desde</span><span class="hero__place">Conil</span></h1>
+    <p class="hero__sub">Lorena &amp; Diego · dónde dormir</p>
+  </div>
+</header>
+
+<main>
+  <div class="letter">
+    <p><span class="letter__hello">Queridos invitados:</span>Os dejamos algunas opciones para alojaros en Conil. Varias tienen descuento para nuestros invitados: tocad el matasellos para copiar el código y usadlo al hacer la reserva.</p>
+  </div>
+
+  <ol class="postales">
+
+    <li class="postal">
+      <div class="postal__photo"><img src="/images/hoteles/daia.jpg" alt="Piscina y palmeras del DAIA Slow Beach Hotel Conil" loading="lazy"></div>
+      <div class="postal__back">
+        <div>
+          <h2 class="postal__name">DAIA Slow Beach Hotel Conil</h2>
+          <span class="stars" style="--n:5" role="img" aria-label="5 estrellas"></span>
+          <p class="postal__hand">¡Nuestra favorita!</p>
+          <ul class="postal__facts">
+            <li>Una de las mejores opciones de alojamiento recomendadas por los novios.</li>
+            <li>Sin descuento para invitados.</li>
+          </ul>
+          <a class="postal__link" href="https://www.daiahotels.com/daia-conil/" target="_blank" rel="noopener">Ver web del hotel</a>
+        </div>
+        <div class="postal__rule"></div>
+        <div class="postal__side">
+          <div class="stamp stamp--salvia"><div class="stamp__in"><svg class="stamp__heart" aria-hidden="true"><use href="#i-heart"/></svg><span class="stamp__txt">Recomendado</span></div></div>
+        </div>
+      </div>
+    </li>
+
+    <li class="postal">
+      <div class="postal__photo"><img src="/images/hoteles/gran-conil.jpg" alt="Hipotels Gran Conil junto a la playa" loading="lazy"></div>
+      <div class="postal__back">
+        <div>
+          <h2 class="postal__name">Hipotels Gran Conil</h2>
+          <span class="stars" style="--n:4" role="img" aria-label="4 estrellas"></span>
+          <ul class="postal__facts">
+            <li>Válido del 15 al 21 de septiembre de 2027.</li>
+            <li>Reserva directamente en la web oficial de Hipotels.</li>
+          </ul>
+          <a class="postal__link" href="https://www.hipotels.com/hoteles/granconil/" target="_blank" rel="noopener">Ver web del hotel</a>
+        </div>
+        <div class="postal__rule"></div>
+        <div class="postal__side">
+          <div class="stamp"><div class="stamp__in"><span class="stamp__num">15%</span><span class="stamp__txt">Descuento</span></div></div>
+          <button type="button" class="postmark js-copy" data-code="BCDH27" aria-label="Copiar código BCDH27">
+            <svg aria-hidden="true"><use href="#i-postmark"/></svg>
+            <span class="postmark__code"><b>BCDH27</b><span class="js-copy-label">Copiar</span></span>
+          </button>
+        </div>
+      </div>
+    </li>
+
+    <li class="postal">
+      <div class="postal__photo"><img src="/images/hoteles/leonor.jpg" alt="Habitación doble del Hotel Leonor" loading="lazy"></div>
+      <div class="postal__back">
+        <div>
+          <h2 class="postal__name">Hotel Leonor</h2>
+          <span class="stars" style="--n:2" role="img" aria-label="2 estrellas"></span>
+          <ul class="postal__facts">
+            <li>Reservas por teléfono o correo electrónico.</li>
+            <li>Estancia mínima: 2 noches.</li>
+            <li>Política de cancelación: hasta 7 días antes de la llegada.</li>
+          </ul>
+          <a class="postal__link" href="https://leonorhotelconil.es/" target="_blank" rel="noopener">Ver web del hotel</a>
+        </div>
+        <div class="postal__rule"></div>
+        <div class="postal__side">
+          <div class="stamp stamp--salvia"><div class="stamp__in"><span class="stamp__num">10%</span><span class="stamp__txt">Descuento</span></div></div>
+          <button type="button" class="postmark js-copy" data-code="BODALYD10" aria-label="Copiar código BODALYD10">
+            <svg aria-hidden="true"><use href="#i-postmark"/></svg>
+            <span class="postmark__code"><b>BODALYD10</b><span class="js-copy-label">Copiar</span></span>
+          </button>
+        </div>
+      </div>
+    </li>
+
+    <li class="postal">
+      <div class="postal__photo"><img src="/images/hoteles/fergus.jpg" alt="Cama balinesa al atardecer en el FERGUS Conil Park" loading="lazy"></div>
+      <div class="postal__back">
+        <div>
+          <h2 class="postal__name">FERGUS Conil Park</h2>
+          <span class="stars" style="--n:4" role="img" aria-label="4 estrellas"></span>
+          <ul class="postal__facts">
+            <li>El descuento se aplica sobre todas las tarifas.</li>
+            <li>El 10 % es fijo, aunque las tarifas del hotel cambien.</li>
+            <li>Reserva en la web oficial, introduciendo el código en el apartado correspondiente.</li>
+          </ul>
+          <a class="postal__link" href="https://www.fergushotels.com/fergus-conil-park" target="_blank" rel="noopener">Ver web del hotel</a>
+        </div>
+        <div class="postal__rule"></div>
+        <div class="postal__side">
+          <div class="stamp"><div class="stamp__in"><span class="stamp__num">10%</span><span class="stamp__txt">Descuento</span></div></div>
+          <button type="button" class="postmark js-copy" data-code="LORENAYDIEGO" aria-label="Copiar código LORENAYDIEGO">
+            <svg aria-hidden="true"><use href="#i-postmark"/></svg>
+            <span class="postmark__code"><b>LORENAYDIEGO</b><span class="js-copy-label">Copiar</span></span>
+          </button>
+        </div>
+      </div>
+    </li>
+
+    <li class="postal">
+      <div class="postal__photo"><img src="/images/hoteles/flamenco.jpg" alt="Vista aérea del Hotel Flamenco Conil" loading="lazy"></div>
+      <div class="postal__back">
+        <div>
+          <h2 class="postal__name">Hotel Flamenco Conil</h2>
+          <span class="stars" style="--n:4" role="img" aria-label="4 estrellas"></span>
+          <ul class="postal__facts">
+            <li>Válido del 15 al 21 de septiembre de 2027.</li>
+            <li>Reserva directamente en la web oficial de Hipotels.</li>
+          </ul>
+          <a class="postal__link" href="https://www.hipotels.com/" target="_blank" rel="noopener">Ver web del hotel</a>
+        </div>
+        <div class="postal__rule"></div>
+        <div class="postal__side">
+          <div class="stamp stamp--salvia"><div class="stamp__in"><span class="stamp__num">15%</span><span class="stamp__txt">Descuento</span></div></div>
+          <button type="button" class="postmark js-copy" data-code="BCDH27" aria-label="Copiar código BCDH27">
+            <svg aria-hidden="true"><use href="#i-postmark"/></svg>
+            <span class="postmark__code"><b>BCDH27</b><span class="js-copy-label">Copiar</span></span>
+          </button>
+        </div>
+      </div>
+    </li>
+
+  </ol>
+</main>
+
+<footer class="footer">
+  <div class="footer__initials">L &amp; D</div>
+  <p>Si tenéis cualquier duda con el alojamiento, escribidnos.</p>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Copiado de códigos promocionales (mismo comportamiento que la página principal).
+const toast = document.getElementById('toast');
+let toastTimer = null;
+
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+}
+
+// Alternativa para navegadores sin acceso al portapapeles moderno.
+function copyWithSelection(text) {
+  const area = document.createElement('textarea');
+  area.value = text;
+  area.setAttribute('readonly', '');
+  area.style.position = 'fixed';
+  area.style.opacity = '0';
+  document.body.appendChild(area);
+  area.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+  document.body.removeChild(area);
+  return ok;
+}
+
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try { await navigator.clipboard.writeText(text); return true; } catch (err) { /* probamos la alternativa */ }
+  }
+  return copyWithSelection(text);
+}
+
+document.querySelectorAll('.js-copy').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const code = button.dataset.code;
+    const label = button.querySelector('.js-copy-label');
+    if (await copyText(code)) {
+      button.classList.add('is-copied');
+      if (label) label.textContent = 'Copiado';
+      showToast(`Código ${code} copiado`);
+      setTimeout(() => {
+        button.classList.remove('is-copied');
+        if (label) label.textContent = 'Copiar';
+      }, 2200);
+    } else {
+      showToast('No se pudo copiar: mantén pulsado el código para copiarlo');
+    }
+  });
+});
+</script>
+</body>
+</html>
