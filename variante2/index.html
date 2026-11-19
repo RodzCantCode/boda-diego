@@ -117,28 +117,15 @@ button { font: inherit; cursor: pointer; }
 .toast {
   position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 16px);
   width: max-content; max-width: calc(100vw - 32px); text-align: center; background: var(--topo-oscuro); color: var(--crema);
-  padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none;
+  padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none; z-index: 10;
   transition: opacity .25s var(--ease-out), transform .35s var(--ease-out);
 }
 .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
-/* ---------- Decoración de fondo: motas de luz y llaves muy tenues ---------- */
-.desk { position: relative; overflow: hidden; }
+/* ---------- Fondo vivo: un lienzo fijo por encima del verde y por debajo del contenido (el script, al final) ---------- */
+.fondo-vivo { position: fixed; left: 0; top: 0; width: 100%; height: 100lvh; z-index: 0; pointer-events: none; }
 .desk__text, .rack { position: relative; z-index: 1; }
-.motes { position: absolute; inset: 0; pointer-events: none; }
-.motes span {
-  position: absolute; left: var(--x); bottom: -12px; width: var(--s); height: var(--s); border-radius: 50%;
-  background: var(--papel); opacity: 0; animation: rise var(--t) linear infinite; animation-delay: var(--d);
-}
-@keyframes rise {
-  0% { transform: translate(0, 0); opacity: 0; }
-  15% { opacity: .5; }
-  85% { opacity: .35; }
-  100% { transform: translate(var(--dx, 20px), -720px); opacity: 0; }
-}
-.keys-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.keys-bg svg { position: absolute; width: var(--w, 64px); color: var(--topo-oscuro); opacity: .09; animation: dangle var(--t, 9s) ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
-@keyframes dangle { from { transform: translateY(0) rotate(-8deg); } to { transform: translateY(-14px) rotate(8deg); } }
+main, .footer { position: relative; z-index: 1; }
 
 @media (min-width: 760px) {
   .desk { padding-top: 88px; }
@@ -146,35 +133,20 @@ button { font: inherit; cursor: pointer; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .fob, .keys-bg svg { animation: none; }
-  .motes { display: none; }
+  .fob { animation: none; }
   .fob__body, .toast { transition: none; }
 }
 </style>
 </head>
 <body>
 
-<div class="keys-bg" aria-hidden="true">
-  <svg viewBox="0 0 48 20" style="top:58%;left:3%;--w:70px;--t:9s;--d:-2s"><circle cx="9" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 10H46M38 10v6M44 10v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-  <svg viewBox="0 0 48 20" style="top:78%;right:4%;--w:56px;--t:11s;--d:-6s"><circle cx="9" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 10H46M38 10v6M44 10v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-  <svg viewBox="0 0 48 20" style="top:92%;left:42%;--w:48px;--t:10s;--d:-4s"><circle cx="9" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 10H46M38 10v6M44 10v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-</div>
+<canvas class="fondo-vivo" aria-hidden="true"></canvas>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2.5 5 6.5 5c2.2 0 3.6 1.2 5.5 3.2C13.9 6.2 15.3 5 17.5 5c4 0 6 4 4 7.5C19 16.65 12 21 12 21z"/></symbol>
 </svg>
 
 <header class="desk">
-  <div class="motes" aria-hidden="true">
-    <span style="--x:8%;--s:5px;--t:16s;--d:-2s;--dx:18px"></span>
-    <span style="--x:19%;--s:7px;--t:21s;--d:-11s;--dx:-14px"></span>
-    <span style="--x:31%;--s:4px;--t:14s;--d:-6s;--dx:22px"></span>
-    <span style="--x:46%;--s:6px;--t:19s;--d:-15s;--dx:-20px"></span>
-    <span style="--x:58%;--s:5px;--t:17s;--d:-3s;--dx:16px"></span>
-    <span style="--x:69%;--s:8px;--t:23s;--d:-9s;--dx:-12px"></span>
-    <span style="--x:81%;--s:4px;--t:15s;--d:-12s;--dx:20px"></span>
-    <span style="--x:92%;--s:6px;--t:20s;--d:-5s;--dx:-18px"></span>
-  </div>
   <div class="desk__text">
     <h1>Elegid vuestra llave</h1>
     <p>Os dejamos estos cinco hoteles en Conil para que podáis elegir dónde quedaros. En cuatro tenéis descuento. Tocad una llave para ver su hotel.</p>
@@ -323,6 +295,187 @@ document.querySelectorAll('.js-copy').forEach((button) => {
     }
   });
 });
+</script>
+<script>
+// Fondo vivo (la misma manera que en Ochoa y Cokima): un lienzo fijo detrás de la página, dibujado
+// en directo, que sigue al ratón con un muelle y, sin ratón, pasea solo. Detrás del texto baja a una
+// cuarta parte para no ensuciar la lectura. Con «reducir movimiento» se pinta quieto y con la
+// pestaña oculta no se pinta.
+(() => {
+  const canvas = document.querySelector('.fondo-vivo');
+  const ctx = canvas && canvas.getContext('2d');
+  if (!ctx) return;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const hasMouse = matchMedia('(hover: hover) and (pointer: fine)');
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+  const pointer = { x: 0, y: 0, tx: 0, ty: 0, power: 0, target: 0, seen: false };
+  const start = performance.now();
+  let width = 0, height = 0, frameId = 0;
+
+  // Llaveros: haces de luz sobre el verde y motas de polvo que brillan al cruzarlos y se apartan
+  // de la mano como si soplaras. Debajo del verde siguen subiendo, en latón.
+  const GUARD = '.desk__text > *, .room__head, .room__facts, .room__link, .room__nodeal, .footer > *';
+  const desk = document.querySelector('.desk');
+  const PAPEL = '251,249,244', LATON = '163,143,108';
+  const beams = [
+    { at: 0.12, half: 70, sway: 0 },
+    { at: 0.42, half: 110, sway: 1.7 },
+    { at: 0.78, half: 60, sway: 3.1 },
+  ];
+  const ANGLE = 0.42;
+  let motes = [];
+  let last = 0;
+  const newMote = (anywhere) => ({
+    x: Math.random() * width,
+    y: anywhere ? Math.random() * height : height + 8,
+    r: 0.8 + Math.random() * 2.4,
+    rise: 6 + Math.random() * 16,
+    phase: Math.random() * 6.28,
+    twinkle: 0.6 + Math.random() * 1.6,
+    vx: 0, vy: 0,
+  });
+  function setup() {
+    motes = Array.from({ length: width < 600 ? 60 : 120 }, () => newMote(true));
+  }
+  function beamX(b, t) { return width * b.at + Math.sin(t * 0.12 + b.sway) * 50; }
+  function beamAt(x, y, t) {
+    let k = 0;
+    for (const b of beams) {
+      const d = Math.abs((x - beamX(b, t)) * Math.cos(ANGLE) - y * Math.sin(ANGLE));
+      k = Math.max(k, 1 - d / b.half);
+    }
+    return Math.max(0, k);
+  }
+  function draw(t) {
+    const dt = Math.min(0.05, Math.max(0, t - last));
+    last = t;
+    const deskBottom = desk.getBoundingClientRect().bottom;
+    if (deskBottom > 0) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(0, 0, width, deskBottom);
+      ctx.clip();
+      const reach = deskBottom + 200;
+      for (const b of beams) {
+        const x = beamX(b, t), dx = Math.tan(ANGLE) * reach;
+        const g = ctx.createLinearGradient(0, 0, 0, reach);
+        g.addColorStop(0, `rgba(${PAPEL},.26)`);
+        g.addColorStop(1, `rgba(${PAPEL},0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.moveTo(x - b.half, 0);
+        ctx.lineTo(x + b.half, 0);
+        ctx.lineTo(x + b.half + dx, reach);
+        ctx.lineTo(x - b.half + dx, reach);
+        ctx.fill();
+      }
+      // La mano lleva su propia luz sobre el verde
+      if (pointer.power > 0.01 && pointer.y < deskBottom) {
+        const glow = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 170);
+        glow.addColorStop(0, `rgba(${PAPEL},${(0.22 * pointer.power).toFixed(3)})`);
+        glow.addColorStop(1, `rgba(${PAPEL},0)`);
+        ctx.fillStyle = glow;
+        ctx.fillRect(pointer.x - 170, pointer.y - 170, 340, 340);
+      }
+      ctx.restore();
+    }
+    for (const m of motes) {
+      const dx = m.x - pointer.x, dy = m.y - pointer.y;
+      const dist = Math.sqrt(dx * dx + dy * dy) + 1;
+      const push = pointer.power * Math.exp(-(dist * dist) / (2 * 110 * 110)) * 220;
+      m.vx = (m.vx + (dx / dist) * push * dt) * 0.94;
+      m.vy = (m.vy + (dy / dist) * push * dt) * 0.94;
+      m.x += (Math.sin(t * 0.6 + m.phase) * 10 + m.vx) * dt;
+      m.y += (m.vy - m.rise) * dt;
+      if (m.y < -10) Object.assign(m, newMote(false));
+      if (m.x < -10) m.x = width + 10; else if (m.x > width + 10) m.x = -10;
+      const shine = 0.55 + 0.45 * Math.sin(t * m.twinkle + m.phase);
+      const onGreen = m.y < deskBottom;
+      const alpha = onGreen ? (0.3 + 0.65 * beamAt(m.x, m.y, t)) * shine : 0.5 * shine;
+      const color = onGreen ? PAPEL : LATON;
+      ctx.fillStyle = `rgba(${color},${alpha.toFixed(3)})`;
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.r, 0, 6.2832);
+      ctx.fill();
+      if (m.r > 2) {
+        ctx.fillStyle = `rgba(${color},${(alpha * 0.18).toFixed(3)})`;
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, m.r * 3, 0, 6.2832);
+        ctx.fill();
+      }
+    }
+  }
+
+
+  const guarded = [...document.querySelectorAll(GUARD)];
+
+  function resize() {
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    setup();
+  }
+
+  addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    pointer.tx = e.clientX;
+    pointer.ty = e.clientY;
+    pointer.target = 1;
+    if (!pointer.seen) { pointer.x = pointer.tx; pointer.y = pointer.ty; pointer.seen = true; }
+  }, { passive: true });
+  document.documentElement.addEventListener('mouseleave', () => { pointer.target = 0; });
+
+  function updatePointer(t) {
+    if (!hasMouse.matches) {
+      // Sin ratón, la «mano» pasea sola por la pantalla
+      pointer.tx = width * (0.5 + 0.38 * Math.sin(t * 0.11));
+      pointer.ty = height * (0.5 + 0.32 * Math.sin(t * 0.07 + 1.3));
+      pointer.target = 0.8;
+      if (!pointer.seen) { pointer.x = pointer.tx; pointer.y = pointer.ty; pointer.seen = true; }
+    }
+    pointer.x += (pointer.tx - pointer.x) * 0.08;
+    pointer.y += (pointer.ty - pointer.y) * 0.08;
+    pointer.power += (pointer.target - pointer.power) * 0.05;
+  }
+
+  // Detrás de cada texto el fondo se queda en una cuarta parte, con un borde suave
+  function guard() {
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-out';
+    for (const el of guarded) {
+      const r = el.getBoundingClientRect();
+      if (!r.width || r.bottom < -60 || r.top > height + 60) continue;
+      ctx.fillStyle = 'rgba(0,0,0,.45)';
+      ctx.beginPath();
+      ctx.roundRect(r.left - 28, r.top - 22, r.width + 56, r.height + 44, 26);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(0,0,0,.55)';
+      ctx.beginPath();
+      ctx.roundRect(r.left - 10, r.top - 8, r.width + 20, r.height + 16, 12);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function frame(now) {
+    const t = reduceMotion.matches ? 30 : (now - start) / 1000;
+    updatePointer(t);
+    ctx.clearRect(0, 0, width, height);
+    draw(t);
+    guard();
+    if (!reduceMotion.matches && !document.hidden) frameId = requestAnimationFrame(frame);
+  }
+  function restart() { cancelAnimationFrame(frameId); frameId = requestAnimationFrame(frame); }
+
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) restart(); });
+  reduceMotion.addEventListener('change', restart);
+  addEventListener('scroll', () => { if (reduceMotion.matches) restart(); }, { passive: true });
+  addEventListener('resize', () => { resize(); restart(); });
+  resize();
+  restart();
+})();
 </script>
 </body>
 </html>
