@@ -117,6 +117,21 @@ button { font: inherit; cursor: pointer; }
 }
 .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
+/* ---------- Decoración de fondo: gaviotas y olas muy tenues ---------- */
+.breeze { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.gull { position: absolute; left: 0; width: var(--w, 28px); color: var(--topo); opacity: .22; animation: glide var(--t, 90s) linear infinite; animation-delay: var(--d, 0s); }
+.gull svg { display: block; width: 100%; height: auto; animation: bob var(--b, 5s) ease-in-out infinite; }
+.wave {
+  position: absolute; left: 0; bottom: var(--y, 0); width: calc(100% + 120px); height: 14px; opacity: var(--o, .5);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14'%3E%3Cpath d='M0 7Q15 1 30 7T60 7T90 7T120 7' fill='none' stroke='%23A8B8AE' stroke-width='1.5'/%3E%3C/svg%3E") repeat-x 0 0 / 120px 14px;
+  animation: tide var(--t, 14s) linear infinite;
+}
+@keyframes glide { from { transform: translateX(-60px); } to { transform: translateX(calc(100vw + 60px)); } }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes tide { to { transform: translateX(-120px); } }
+@keyframes drift { from { transform: scale(1.02); } to { transform: scale(1.1) translate(-1.5%, -1%); } }
+.hero img { animation: drift 30s ease-in-out infinite alternate; }
+
 @media (min-width: 760px) {
   .hero__text { padding-bottom: 44px; }
   .postales { padding-top: 32px; }
@@ -126,10 +141,21 @@ button { font: inherit; cursor: pointer; }
   .postal__back { grid-template-columns: 1fr 1px 128px; padding: 20px 22px 22px; gap: 18px; }
   .postal__name { font-size: 28px; }
 }
-@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .toast { transition: none; }
+  .gull, .gull svg, .wave, .hero img { animation: none; }
+}
 </style>
 </head>
 <body>
+
+<div class="breeze" aria-hidden="true">
+  <span class="gull" style="top:22%;--w:30px;--t:95s;--d:-20s;--b:5s"><svg viewBox="0 0 24 10"><path d="M1 8Q6 1 12 7Q18 1 23 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+  <span class="gull" style="top:48%;--w:22px;--t:120s;--d:-75s;--b:6s"><svg viewBox="0 0 24 10"><path d="M1 8Q6 1 12 7Q18 1 23 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+  <span class="gull" style="top:71%;--w:26px;--t:105s;--d:-45s;--b:4.5s"><svg viewBox="0 0 24 10"><path d="M1 8Q6 1 12 7Q18 1 23 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+  <span class="wave" style="--y:34px;--t:16s;--o:.45"></span>
+  <span class="wave" style="--y:16px;--t:11s;--o:.6"></span>
+</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2.5 5 6.5 5c2.2 0 3.6 1.2 5.5 3.2C13.9 6.2 15.3 5 17.5 5c4 0 6 4 4 7.5C19 16.65 12 21 12 21z"/></symbol>

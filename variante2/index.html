@@ -122,24 +122,59 @@ button { font: inherit; cursor: pointer; }
 }
 .toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
+/* ---------- Decoración de fondo: motas de luz y llaves muy tenues ---------- */
+.desk { position: relative; overflow: hidden; }
+.desk__text, .rack { position: relative; z-index: 1; }
+.motes { position: absolute; inset: 0; pointer-events: none; }
+.motes span {
+  position: absolute; left: var(--x); bottom: -12px; width: var(--s); height: var(--s); border-radius: 50%;
+  background: var(--papel); opacity: 0; animation: rise var(--t) linear infinite; animation-delay: var(--d);
+}
+@keyframes rise {
+  0% { transform: translate(0, 0); opacity: 0; }
+  15% { opacity: .5; }
+  85% { opacity: .35; }
+  100% { transform: translate(var(--dx, 20px), -720px); opacity: 0; }
+}
+.keys-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.keys-bg svg { position: absolute; width: var(--w, 64px); color: var(--topo-oscuro); opacity: .09; animation: dangle var(--t, 9s) ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
+@keyframes dangle { from { transform: translateY(0) rotate(-8deg); } to { transform: translateY(-14px) rotate(8deg); } }
+
 @media (min-width: 760px) {
   .desk { padding-top: 88px; }
   .rack { --k: 1.18; } /* llaveros algo más largos en pantalla grande */
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .fob { animation: none; }
+  .fob, .keys-bg svg { animation: none; }
+  .motes { display: none; }
   .fob__body, .toast { transition: none; }
 }
 </style>
 </head>
 <body>
 
+<div class="keys-bg" aria-hidden="true">
+  <svg viewBox="0 0 48 20" style="top:58%;left:3%;--w:70px;--t:9s;--d:-2s"><circle cx="9" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 10H46M38 10v6M44 10v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  <svg viewBox="0 0 48 20" style="top:78%;right:4%;--w:56px;--t:11s;--d:-6s"><circle cx="9" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 10H46M38 10v6M44 10v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  <svg viewBox="0 0 48 20" style="top:92%;left:42%;--w:48px;--t:10s;--d:-4s"><circle cx="9" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 10H46M38 10v6M44 10v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</div>
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2.5 5 6.5 5c2.2 0 3.6 1.2 5.5 3.2C13.9 6.2 15.3 5 17.5 5c4 0 6 4 4 7.5C19 16.65 12 21 12 21z"/></symbol>
 </svg>
 
 <header class="desk">
+  <div class="motes" aria-hidden="true">
+    <span style="--x:8%;--s:5px;--t:16s;--d:-2s;--dx:18px"></span>
+    <span style="--x:19%;--s:7px;--t:21s;--d:-11s;--dx:-14px"></span>
+    <span style="--x:31%;--s:4px;--t:14s;--d:-6s;--dx:22px"></span>
+    <span style="--x:46%;--s:6px;--t:19s;--d:-15s;--dx:-20px"></span>
+    <span style="--x:58%;--s:5px;--t:17s;--d:-3s;--dx:16px"></span>
+    <span style="--x:69%;--s:8px;--t:23s;--d:-9s;--dx:-12px"></span>
+    <span style="--x:81%;--s:4px;--t:15s;--d:-12s;--dx:20px"></span>
+    <span style="--x:92%;--s:6px;--t:20s;--d:-5s;--dx:-18px"></span>
+  </div>
   <div class="desk__text">
     <h1>Elegid vuestra llave</h1>
     <p>Os dejamos estos cinco hoteles en Conil para que podáis elegir dónde quedaros. En cuatro tenéis descuento. Tocad una llave para ver su hotel.</p>
