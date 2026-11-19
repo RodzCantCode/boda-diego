@@ -59,6 +59,7 @@ button { font: inherit; cursor: pointer; }
 
 /* ---------- Carta de bienvenida ---------- */
 .letter { max-width: 560px; margin: 0 auto; padding: 36px 20px 8px; font-size: 16px; }
+.letter__hello { display: block; font: 400 17px/1.6 'Homemade Apple', cursive; color: var(--salvia-oscuro); margin-bottom: 10px; }
 .letter p { margin: 0; }
 
 /* ---------- Postales ---------- */
@@ -144,13 +145,13 @@ button { font: inherit; cursor: pointer; }
   <img src="/images/hoteles/costa-conil.jpg" alt="Atardecer sobre la playa de Conil desde el acantilado">
   <div class="hero__text">
     <h1><span class="hero__script">Saludos desde</span><span class="hero__place">Conil</span></h1>
-    <p class="hero__sub">Dónde dormir para la boda de Lorena y Diego</p>
+    <p class="hero__sub">Lorena &amp; Diego · dónde dormir</p>
   </div>
 </header>
 
 <main>
   <div class="letter">
-    <p>Aquí tenéis los hoteles para dormir en Conil. En cuatro hay descuento: copiad el código y usadlo al reservar.</p>
+    <p><span class="letter__hello">Queridos invitados:</span>Os dejamos estos hoteles en Conil para que podáis elegir dónde quedaros. En cuatro de ellos tenéis descuento: tocad el matasellos para copiar el código y usadlo al reservar.</p>
   </div>
 
   <ol class="postales">
@@ -273,6 +274,7 @@ button { font: inherit; cursor: pointer; }
 
 <footer class="footer">
   <div class="footer__initials">L &amp; D</div>
+  <p>Si tenéis cualquier duda con el alojamiento, escribidnos.</p>
 </footer>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>

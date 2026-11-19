@@ -73,6 +73,8 @@ button { font: inherit; cursor: pointer; }
 /* La cifra grande es el dato que decide (el descuento), no un número de sección */
 .entry__over { position: absolute; left: 16px; bottom: -.36em; font: 300 clamp(96px, 26vw, 150px)/1 var(--display); color: var(--topo-oscuro); letter-spacing: -.04em; }
 .entry--alt .entry__over { left: auto; right: 16px; }
+/* En el hotel recomendado (sin descuento) el dato grande es un corazón dibujado */
+.entry__heart { position: absolute; left: 16px; bottom: -36px; width: clamp(80px, 22vw, 120px); height: auto; fill: var(--topo-oscuro); }
 .entry__body { padding: 52px 20px 0; max-width: 560px; }
 .entry__name { font: 500 clamp(30px, 8vw, 44px)/1 var(--display); letter-spacing: -.02em; margin: 0; }
 .entry__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 12px 0 0; font-size: 15px; font-weight: 700; color: var(--salvia-oscuro); }
@@ -119,16 +121,16 @@ button { font: inherit; cursor: pointer; }
 
 <header class="cover">
   <img src="/images/hoteles/costa-conil.jpg" alt="Atardecer sobre la playa de Conil desde el acantilado">
-  <div class="cover__mast"><span>Boda de Lorena y Diego</span><span>L &amp; D</span></div>
+  <div class="cover__mast"><span>Guía para invitados</span><span>L &amp; D</span></div>
   <div class="cover__title">
     <h1>Dormir en Conil</h1>
-    <p>Los cinco hoteles que os proponemos, con sus códigos de descuento.</p>
+    <p>Os dejamos estos hoteles en Conil para que podáis elegir dónde quedaros. En cuatro tenéis descuento con código.</p>
   </div>
 </header>
 
 <nav class="index" aria-labelledby="index-title">
   <div class="index__inner">
-    <h2 id="index-title">Los hoteles</h2>
+    <h2 id="index-title">En esta guía</h2>
     <ol>
       <li><a href="#hotel-1"><span>DAIA Slow Beach Hotel Conil</span><span>Recomendado</span></a></li>
       <li><a href="#hotel-2"><span>Hipotels Gran Conil</span><span>−15 %</span></a></li>
@@ -143,7 +145,7 @@ button { font: inherit; cursor: pointer; }
   <ol class="entries">
 
     <li class="entry" id="hotel-1">
-      <div class="entry__media"><img src="/images/hoteles/daia.jpg" alt="Piscina y palmeras del DAIA Slow Beach Hotel Conil" loading="lazy"></div>
+      <div class="entry__media"><img src="/images/hoteles/daia.jpg" alt="Piscina y palmeras del DAIA Slow Beach Hotel Conil" loading="lazy"><svg class="entry__heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8.5C.5 9 2.5 5 6.5 5c2.2 0 3.6 1.2 5.5 3.2C13.9 6.2 15.3 5 17.5 5c4 0 6 4 4 7.5C19 16.65 12 21 12 21z"/></svg></div>
       <div class="entry__body">
         <h2 class="entry__name">DAIA Slow Beach Hotel Conil</h2>
         <p class="entry__meta"><span class="stars" style="--n:5" role="img" aria-label="5 estrellas"></span><span>Os lo recomendamos</span></p>
@@ -214,6 +216,7 @@ button { font: inherit; cursor: pointer; }
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__initials">L &amp; D</div>
+    <p>Si tenéis cualquier duda con el alojamiento, escribidnos.</p>
   </div>
 </footer>
 
