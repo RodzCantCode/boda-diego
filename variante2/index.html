@@ -90,7 +90,8 @@ button { font: inherit; cursor: pointer; }
   display: grid; place-content: center; justify-items: center; width: 88px; height: 88px; border-radius: 50%; padding: 8px;
   background: var(--arena); border: 4px solid var(--crema); text-align: center;
 }
-.tag--fav { background: var(--salvia); }
+.tag--fav { background: var(--salvia); padding: 4px; }
+.tag--fav small { font-size: 11px; }
 .tag b { font: 400 28px/1 var(--serif); }
 .tag svg { width: 26px; height: 26px; fill: currentColor; }
 .tag small { font-size: 12px; font-weight: 700; margin-top: 2px; }
@@ -140,8 +141,8 @@ button { font: inherit; cursor: pointer; }
 
 <header class="desk">
   <div class="desk__text">
-    <h1>Elegid vuestra llave</h1>
-    <p>Cinco hoteles para dormir en Conil, cerca de la boda de Lorena y Diego. Varios tienen descuento para invitados. Tocad un llavero para ir a su ficha.</p>
+    <h1>Dónde dormir en Conil</h1>
+    <p>Cinco hoteles para la boda, y en cuatro tenéis descuento. Tocad una llave para ir a ese hotel.</p>
   </div>
   <nav class="rack" aria-label="Hoteles">
     <div class="rack__bar"></div>
@@ -162,10 +163,10 @@ button { font: inherit; cursor: pointer; }
       <div class="room__head"><span class="room__badge" aria-hidden="true">1</span><div><h2 class="room__name">DAIA Slow Beach Hotel Conil</h2><span class="stars" style="--n:5" role="img" aria-label="5 estrellas"></span></div></div>
       <div class="room__photo"><img src="/images/hoteles/daia.jpg" alt="Piscina y palmeras del DAIA Slow Beach Hotel Conil" loading="lazy"></div>
       <div class="room__deal">
-        <span class="tag tag--fav"><svg aria-hidden="true"><use href="#i-heart"/></svg><small>Favorito</small></span>
-        <span class="room__nodeal">Sin descuento para invitados</span>
+        <span class="tag tag--fav"><svg aria-hidden="true"><use href="#i-heart"/></svg><small>Recomendado</small></span>
+        <span class="room__nodeal">Este no tiene descuento</span>
       </div>
-      <ul class="room__facts"><li>Una de las mejores opciones de alojamiento recomendadas por los novios.</li></ul>
+      <ul class="room__facts"><li>Una de las mejores opciones. Os lo recomendamos.</li></ul>
       <a class="room__link" href="https://www.daiahotels.com/daia-conil/" target="_blank" rel="noopener">Ver web del hotel</a>
     </li>
 
@@ -177,8 +178,8 @@ button { font: inherit; cursor: pointer; }
         <button type="button" class="code js-copy" data-code="BCDH27" aria-label="Copiar código BCDH27"><b>BCDH27</b><span class="js-copy-label">Copiar</span></button>
       </div>
       <ul class="room__facts">
-        <li>Válido del 15 al 21 de septiembre de 2027.</li>
-        <li>Reserva directamente en la web oficial de Hipotels.</li>
+        <li>Descuento del 15 al 21 de septiembre de 2027.</li>
+        <li>Se reserva en la web de Hipotels.</li>
       </ul>
       <a class="room__link" href="https://www.hipotels.com/hoteles/granconil/" target="_blank" rel="noopener">Ver web del hotel</a>
     </li>
@@ -191,9 +192,9 @@ button { font: inherit; cursor: pointer; }
         <button type="button" class="code js-copy" data-code="BODALYD10" aria-label="Copiar código BODALYD10"><b>BODALYD10</b><span class="js-copy-label">Copiar</span></button>
       </div>
       <ul class="room__facts">
-        <li>Reservas por teléfono o correo electrónico.</li>
-        <li>Estancia mínima: 2 noches.</li>
-        <li>Política de cancelación: hasta 7 días antes de la llegada.</li>
+        <li>Se reserva por teléfono o por correo.</li>
+        <li>Mínimo 2 noches.</li>
+        <li>Se puede cancelar hasta 7 días antes de llegar.</li>
       </ul>
       <a class="room__link" href="https://leonorhotelconil.es/" target="_blank" rel="noopener">Ver web del hotel</a>
     </li>
@@ -206,9 +207,8 @@ button { font: inherit; cursor: pointer; }
         <button type="button" class="code js-copy" data-code="LORENAYDIEGO" aria-label="Copiar código LORENAYDIEGO"><b>LORENAYDIEGO</b><span class="js-copy-label">Copiar</span></button>
       </div>
       <ul class="room__facts">
-        <li>El descuento se aplica sobre todas las tarifas.</li>
-        <li>El 10 % es fijo, aunque las tarifas del hotel cambien.</li>
-        <li>Reserva en la web oficial, introduciendo el código en el apartado correspondiente.</li>
+        <li>El 10 % vale para cualquier tarifa, aunque cambie el precio.</li>
+        <li>Meted el código al reservar en su web.</li>
       </ul>
       <a class="room__link" href="https://www.fergushotels.com/fergus-conil-park" target="_blank" rel="noopener">Ver web del hotel</a>
     </li>
@@ -221,8 +221,8 @@ button { font: inherit; cursor: pointer; }
         <button type="button" class="code js-copy" data-code="BCDH27" aria-label="Copiar código BCDH27"><b>BCDH27</b><span class="js-copy-label">Copiar</span></button>
       </div>
       <ul class="room__facts">
-        <li>Válido del 15 al 21 de septiembre de 2027.</li>
-        <li>Reserva directamente en la web oficial de Hipotels.</li>
+        <li>Descuento del 15 al 21 de septiembre de 2027.</li>
+        <li>Se reserva en la web de Hipotels.</li>
       </ul>
       <a class="room__link" href="https://www.hipotels.com/" target="_blank" rel="noopener">Ver web del hotel</a>
     </li>
@@ -232,7 +232,6 @@ button { font: inherit; cursor: pointer; }
 
 <footer class="footer">
   <div class="footer__initials">L &amp; D</div>
-  <p>Si tenéis cualquier duda con el alojamiento, escribidnos.</p>
 </footer>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
